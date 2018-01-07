@@ -1,5 +1,5 @@
 virtualenv eikonrest
 source eikonrest/bin/activate
-pip install flask flask-jsonpify flask-restful eikon
+pip install flask flask-jsonpify flask-restful eikon pyyaml
 pip freeze > requirements.txt
 

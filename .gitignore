@@ -2,4 +2,7 @@
 eikonrest/
 
 # Visual Studio Code project meta data files
-.vscode
+.vscode/
+
+# Project config (ignore any update on it)
+config.yml
