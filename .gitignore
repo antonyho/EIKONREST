@@ -1,2 +1,5 @@
 # Project virtualenv directory
 eikonrest/
+
+# Visual Studio Code project meta data files
+.vscode
