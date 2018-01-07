@@ -1,5 +1,5 @@
-virtualenv venv
-source venv/bin/activate
+virtualenv eikonrest
+source eikonrest/bin/activate
 pip install flask flask-jsonpify flask-restful eikon
 pip freeze > requirements.txt
 

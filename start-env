@@ -1,2 +1,2 @@
-. ./bin/activate
+. eikonrest/bin/activate
 pip install -r requirements.txt
