@@ -10,5 +10,11 @@ api = Api(app)
 conf = yaml.load(open('config.yml'))
 ek.set_app_id(conf['eikon']['apikey'])
 
+class Query(Resource):
+    def get(self, syms, fields):
+        df, err = ek.get_data(syms.split(','), fields.split(','))
+        result = {'data': df, 'error': err}
+        return jsonify(result)
+
 if __name__ == '__main__':
-    app.run()
+    app.run(port='1368')
