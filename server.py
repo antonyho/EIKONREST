@@ -10,11 +10,24 @@ api = Api(app)
 conf = yaml.load(open('config.yml'))
 ek.set_app_id(conf['eikon']['apikey'])
 
+
 class Query(Resource):
-    def get(self, syms, fields):
-        df, err = ek.get_data(syms.split(','), fields.split(','))
-        result = {'data': df, 'error': err}
-        return jsonify(result)
+    def get(self, syms, fs, params=''):
+        # TODO - Check UUID in Bearer of API request
+        df = ek.get_data(instruments=str(syms).split(','), fields=str(fs).split(','), parameters=params, raw_output=True)
+        return jsonify(df)
+
+
+class ListHSIOptions(Resource):
+    def get(self, fs, params=''):
+        # TODO - Check UUID in Bearer of API request
+        df = ek.get_data(instruments='0#HSI*.HF', fields=str(fs).split(','), parameters=params,
+                         raw_output=True)
+        return jsonify(df)
+
+
+api.add_resource(Query, '/query/<string:syms>/<string:fs>', '/query/<string:syms>/<string:fs>/<string:params>')
+api.add_resource(ListHSIOptions, '/allHSI/<string:fs>', '/allHSI/<string:fs>/<string:params>')
 
 if __name__ == '__main__':
-    app.run(port='1368')
+    app.run(host='0.0.0.0', port=1368)
