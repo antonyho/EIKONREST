@@ -1,0 +1,4 @@
+eikon:
+  apikey: your_eikon_application_id
+pywrapper:
+  apikey: uuid_v4_generated_by_yourself
