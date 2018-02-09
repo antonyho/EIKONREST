@@ -1,0 +1,2 @@
+mkvirtualenv eikonrest
+workon eikonrest
