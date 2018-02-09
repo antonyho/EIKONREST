@@ -50,6 +50,7 @@ Execute: `pip install -r requirements.txt`
 ### Usage
 ##### To make API call
 Send HTTP request to `<your_server_url>:1368/query/<symbol1>,<symbol2>/<field1>,<field2>/<parameters>`
+_The request must include the API key specified in config.yml file_ Use OAuth 2.0 token string authentication method to add the token to header.
 
 #### Example:
 `<your_server_url>:1368/query/GOOG.O/TR.OPEN,TR.CLOSE`
