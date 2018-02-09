@@ -26,23 +26,10 @@ class Query(Resource):
             return None
 
 
-class ListHSIOptions(Resource):
-    def get(self, fs, params=''):
-        #  Check UUID in Bearer of API request. This is a simple wrapper.
-        token = request.headers.get('Authorization', None)
-        if token is None:
-            return None
-        method, tokenstr = token.split()
-        if method.lower() == "bearer" and tokenstr == conf['pywrapper']['apikey']:
-            df = ek.get_data(instruments='0#HSI*.HF', fields=str(fs).split(','), parameters=params,
-                             raw_output=True)
-            return jsonify(df)
-        else:
-            return None
-
-
+# Example: To search with a wildcard HK Heng Seng Index symbol '0#HSI*.HF'
+# /query/0%23HSI*.HF/PUT_CALL,CF_LAST,CF_ASK,CF_BID,PCTCHNG
+# Use %23 to replace pound '#' as it represents anchor/bookmark on URL
 api.add_resource(Query, '/query/<string:syms>/<string:fs>', '/query/<string:syms>/<string:fs>/<string:params>')
-api.add_resource(ListHSIOptions, '/allHSI/<string:fs>', '/allHSI/<string:fs>/<string:params>')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=1368)
