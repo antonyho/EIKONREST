@@ -40,7 +40,7 @@ class Interval(Resource):
         if calc is None or calc == '':
             calc='tradingdays'
         df = ek.get_timeseries(rics=str(syms).split(','), start_date=start, end_date=end, interval=str(itrvl),
-                               fields=str(fs).split(','), calendar=calc, raw_output=True)
+                               fields=str(fs).split(','), calendar=str(calc), raw_output=True)
         return jsonify(df)
 
 
