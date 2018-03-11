@@ -34,8 +34,8 @@ class Query(Resource):
         return jsonify(df)
 
 class Interval(Resource):
-    def get(self, syms, fs, start, end, interval):
-        df = ek.get_timeseries(rics=str(syms).split(','), start_date=start, end_date=end, interval="weekly", fields=fs,
+    def get(self, syms, fs, start, end, interval='weekly'):
+        df = ek.get_timeseries(rics=str(syms).split(','), start_date=start, end_date=end, interval=interval, fields=fs,
                                calendar="tradingdays", raw_output=True)
         return jsonify(df)
 
